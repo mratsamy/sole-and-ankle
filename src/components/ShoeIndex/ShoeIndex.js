@@ -41,18 +41,20 @@ const Wrapper = styled.div`
     flex-direction: row-reverse;
     align-items: baseline;
     gap: 32px;
-    width: 1378px;
-    height: 876px;
 `
 
-const LeftColumn = styled.div``
+const LeftColumn = styled.div`
+    flex-basis: 248px;
+`
 
-const MainColumn = styled.div``
+const MainColumn = styled.div`
+    flex: 1;
+`
 
 const Header = styled.header`
     display: flex;
+    align-items: baseline;
     justify-content: space-between;
-    margin-right: 37px;
 `
 
 const Title = styled.h2`
