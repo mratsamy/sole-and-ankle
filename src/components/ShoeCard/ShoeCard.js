@@ -33,10 +33,18 @@ const ShoeCard = ({ slug, name, imageSrc, price, salePrice, releaseDate, numOfCo
                 <Spacer size={12} />
                 <Row>
                     <Name>{name}</Name>
-                    <Price>{formatPrice(price)}</Price>
+                    <Price
+                        style={{
+                            textDecoration: salePrice ? "line-through" : null,
+                            "--color": salePrice ? COLORS.gray[700] : null,
+                        }}
+                    >
+                        {formatPrice(price)}
+                    </Price>
                 </Row>
                 <Row>
                     <ColorInfo>{pluralize("Color", numOfColors)}</ColorInfo>
+                    <SalePrice>{salePrice && formatPrice(salePrice)}</SalePrice>
                 </Row>
             </Wrapper>
         </Link>
@@ -48,9 +56,14 @@ const Variant = (props) => {
         text-transform: capitalize;
         color: white;
         position: absolute;
+        height: 32px;
         top: 12px;
-        right: -8px;
-        padding: 0 8px;
+        right: -4px;
+        border-radius: 2px;
+        padding: 0 10px;
+        line-height: 32px;
+        font-size: ${14 / 18}rem;
+        font-weight: ${WEIGHTS["bold"]};
         background-color: ${props.variant === "on-sale"
             ? COLORS.primary
             : props.variant === "new-release"
@@ -68,10 +81,7 @@ const Link = styled.a`
     color: inherit;
 `
 
-const Wrapper = styled.article`
-    width: 344px;
-    height: 370px;
-`
+const Wrapper = styled.article``
 
 const ImageWrapper = styled.div`
     position: relative;
@@ -93,7 +103,9 @@ const Name = styled.h3`
     color: ${COLORS.gray[900]};
 `
 
-const Price = styled.span``
+const Price = styled.span`
+    color: var(--color);
+`
 
 const ColorInfo = styled.p`
     color: ${COLORS.gray[700]};
